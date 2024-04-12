@@ -50,20 +50,20 @@ You can install Postman via this website: https://www.postman.com/downloads/
 ## Mandatory Checklists (Publisher)
 -   [ ] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
 -   **STAGE 1: Implement models and repositories**
-    -   [ ] Commit: `Create Subscriber model struct.`
-    -   [ ] Commit: `Create Notification model struct.`
-    -   [ ] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
-    -   [ ] Commit: `Implement add function in Subscriber repository.`
-    -   [ ] Commit: `Implement list_all function in Subscriber repository.`
-    -   [ ] Commit: `Implement delete function in Subscriber repository.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
+    -   [x] Commit: `Create Subscriber model struct.`
+    -   [x] Commit: `Create Notification model struct.`
+    -   [x] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
+    -   [x] Commit: `Implement add function in Subscriber repository.`
+    -   [x] Commit: `Implement list_all function in Subscriber repository.`
+    -   [x] Commit: `Implement delete function in Subscriber repository.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
-    -   [ ] Commit: `Create Notification service struct skeleton.`
-    -   [ ] Commit: `Implement subscribe function in Notification service.`
-    -   [ ] Commit: `Implement subscribe function in Notification controller.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification service.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    -   [x] Commit: `Create Notification service struct skeleton.`
+    -   [x] Commit: `Implement subscribe function in Notification service.`
+    -   [x] Commit: `Implement subscribe function in Notification controller.`
+    -   [x] Commit: `Implement unsubscribe function in Notification service.`
+    -   [x] Commit: `Implement unsubscribe function in Notification controller.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
     -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
     -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
@@ -87,5 +87,11 @@ This is the place for you to write reflections:
 + It depends for example, using a Singleton pattern controls access to a shared instance of a data structure, ensuring its uniqueness throughout the program's life and simplifying dependencies. However, employing a library like DashMap offers a more efficient solution for managing shared data structures in a multithreaded environment. Also, Singleton is crucial to ensure that multiple threads access only one instance of the SUBSCRIBER instance from DashMap.
 
 #### Reflection Publisher-2
+1.In the Model-View Controller (MVC) compound pattern, there is no “Service” and “Repository”. Model in MVC covers both data storage and business logic. Explain based on your understanding of design principles, why we need to separate “Service” and “Repository” from a Model?
++ By separating the "Service" and "Repository" from the Model, we adhere to the principle of Separation of Concerns. This means each component has a specific responsibility.The Model focuses on representing data, while the Service handles business logic, like processing data, and the Repository deals with data storage and retrieval. This separation makes the codebase easier to understand, maintain, and test, as each component focuses on a single aspect of the application's functionality. It also promotes code reusability and scalability, as changes to one component are less likely to impact others.
+2.What happens if we only use the Model? Explain your imagination on how the interactions between each model (Program, Subscriber, Notification) affect the code complexity for each model?
++ Overall, relying solely on the Model layer without separating concerns will overly complicate the code leading to a codebase that is harder to understand, maintain and test and also each module relying eachother in a single layer will drastically increase code complexity and high risk of making it tightly coupled.
+3.Have you explored more about Postman? Tell us how this tool helps you to test your current work. You might want to also list which features in Postman you are interested in or feel like it is helpful to help your Group Project or any of your future software engineering projects.
++ Postman is like a special toolbox for testing and developing software, especially when you're working with APIs. It helps you check if your APIs are doing what they're supposed to by sending requests and getting responses back. You can also automate these tests, so you don't have to do them manually every time. Postman lets you set up different environments, like for testing and for the real deal, so you can see how your APIs behave in different situations. Plus, it has this cool feature where you can create pretend versions of your APIs called mock servers, which are handy when you're still building the real thing. And if you need to show others how to use your APIs, Postman can even help you create documentation to explain everything clearly. Overall, Postman makes it easier to test, develop, and share your APIs, which is should be super helpful for any future software projects.
 
 #### Reflection Publisher-3
