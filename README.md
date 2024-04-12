@@ -65,11 +65,11 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement unsubscribe function in Notification controller.`
     -   [x] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
-    -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
-    -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
-    -   [ ] Commit: `Implement publish function in Program service and Program controller.`
-    -   [ ] Commit: `Edit Product service methods to call notify after create/delete.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
+    -   [x] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
+    -   [x] Commit: `Implement notify function in Notification service to notify each Subscriber.`
+    -   [x] Commit: `Implement publish function in Program service and Program controller.`
+    -   [x] Commit: `Edit Product service methods to call notify after create/delete.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -89,9 +89,18 @@ This is the place for you to write reflections:
 #### Reflection Publisher-2
 1.In the Model-View Controller (MVC) compound pattern, there is no “Service” and “Repository”. Model in MVC covers both data storage and business logic. Explain based on your understanding of design principles, why we need to separate “Service” and “Repository” from a Model?
 + By separating the "Service" and "Repository" from the Model, we adhere to the principle of Separation of Concerns. This means each component has a specific responsibility.The Model focuses on representing data, while the Service handles business logic, like processing data, and the Repository deals with data storage and retrieval. This separation makes the codebase easier to understand, maintain, and test, as each component focuses on a single aspect of the application's functionality. It also promotes code reusability and scalability, as changes to one component are less likely to impact others.
-2.What happens if we only use the Model? Explain your imagination on how the interactions between each model (Program, Subscriber, Notification) affect the code complexity for each model?
+2.What happens if we only use the Model? Explain your imagination on how the interactions between each model (`Program, Subscriber, Notification`) affect the code complexity for each model?
 + Overall, relying solely on the Model layer without separating concerns will overly complicate the code leading to a codebase that is harder to understand, maintain and test and also each module relying eachother in a single layer will drastically increase code complexity and high risk of making it tightly coupled.
-3.Have you explored more about Postman? Tell us how this tool helps you to test your current work. You might want to also list which features in Postman you are interested in or feel like it is helpful to help your Group Project or any of your future software engineering projects.
+3.Have you explored more about `Postman`? Tell us how this tool helps you to test your current work. You might want to also list which features in Postman you are interested in or feel like it is helpful to help your Group Project or any of your future software engineering projects.
 + Postman is like a special toolbox for testing and developing software, especially when you're working with APIs. It helps you check if your APIs are doing what they're supposed to by sending requests and getting responses back. You can also automate these tests, so you don't have to do them manually every time. Postman lets you set up different environments, like for testing and for the real deal, so you can see how your APIs behave in different situations. Plus, it has this cool feature where you can create pretend versions of your APIs called mock servers, which are handy when you're still building the real thing. And if you need to show others how to use your APIs, Postman can even help you create documentation to explain everything clearly. Overall, Postman makes it easier to test, develop, and share your APIs, which is should be super helpful for any future software projects.
 
 #### Reflection Publisher-3
+1.Observer Pattern has two variations: `Push model` (publisher pushes data to subscribers) and `Pull model` (subscribers pull data from publisher). In this tutorial case, which variation of Observer Pattern that we use?
++ The Observer Pattern comes in two variations: the Push model and the Pull model. In the Push model, the publisher actively sends updates to its subscribers. Conversely, in the Pull model, subscribers fetch updates from the publisher when needed. In this specific tutorial scenario, the Push Model is employed. We see this in action when any new request, such as creating, deleting, or publishing a Product, triggers the NotificationService to automatically dispatch update notifications to all Subscribers who have subscribed to that particular product type.
+
+2.What are the advantages and disadvantages of using the other variation of Observer Pattern for this tutorial case? (example: if you answer Q1 with Push, then imagine if we used Pull)
++ The advange on implementing the Pull model in this scenario would make the Subscriber to proactively request data from the publisher, granting them control over when they receive updates. 
++ However, this approach has its disadvantages as it renders the notification system redundant. Instead of automated notifications, Subscribers would need to possess knowledge of the data structure they wish to retrieve, essentially transforming the system into a manual, pull-based process. This not only complicates the Subscriber's interaction with the system but also undermines the purpose of having a notification service in the first place.
+
+3.Explain what will happen to the program if we decide to not use multi-threading in the notification process.
++ If we were to decide to not use multi-threading, the program would dispatch notifications sequentially, one after another, potentially resulting in significant delays, especially when dealing with multiple Subscribers. This sequential approach would notably slow down the process, as each notification must wait for the previous one to complete before being sent.
