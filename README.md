@@ -77,6 +77,14 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+1.In the Observer pattern diagram explained by the Head First Design Pattern book, Subscriber is defined as an interface. Explain based on your understanding of Observer design patterns, do we still need an interface (or `trait` in Rust) in this BambangShop case, or a single Model `struct` is enough?
++ Not nessecarily, we don't  need to implement an interface since all Subscribers exhibit identical behavior That negates the main purpose of traits, which is to introduce and distinguish various behaviors for Subscribers. However, if there's a plan in the future to have Subscribers with distinct behaviors, it's probably a good idea to implement an interface.
+
+2.`id` in Program and `url` in `Subscriber` is intended to be unique. Explain based on your understanding, is using `Vec` (list) sufficient or using `DashMap` (map/dictionary) like we currently use is necessary for this case?
++ Since `ids` and `urls` are meant to be unique, implementing keys for their identifiers makes DashMaps a more suitable choice, offering better operational efficiency compared to a single list/Vec. This is because Vec is more suited for smaller datasets with a fixed order and it doesn't perform well with datasets containing unique identifiers like keys, resulting in a linear lookup time as it needs to iterate through the list. On the contrary, DashMaps resemble dictionaries or hashmaps/maps, operating based on key-value pairs in datasets which makes it a more apporipate option.
+
+3.When programming using Rust, we are enforced by rigorous compiler constraints to make a thread-safe program. In the case of the List of Subscribers (`SUBSCRIBERS`) static variable, we used the `DashMap` external library for `thread safe HashMap`. Explain based on your understanding of design patterns, do we still need DashMap or we can implement Singleton pattern instead?
++ It depends for example, using a Singleton pattern controls access to a shared instance of a data structure, ensuring its uniqueness throughout the program's life and simplifying dependencies. However, employing a library like DashMap offers a more efficient solution for managing shared data structures in a multithreaded environment. Also, Singleton is crucial to ensure that multiple threads access only one instance of the SUBSCRIBER instance from DashMap.
 
 #### Reflection Publisher-2
 
